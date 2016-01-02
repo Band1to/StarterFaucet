@@ -1,0 +1,3 @@
+[submodule "easybitcoin"]
+	path = easybitcoin
+	url = https://github.com/aceat64/EasyBitcoin-PHP

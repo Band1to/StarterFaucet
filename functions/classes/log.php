@@ -15,7 +15,7 @@ class log {
 	}
 
 	function saveLog($name, $value) {
-		file_put_contents($this->logpath.$name, $value);
+		$ret = file_put_contents($this->logpath.$name, $value);
 	}
 
 	function getLog($name) {

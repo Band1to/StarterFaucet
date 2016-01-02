@@ -6,11 +6,16 @@ class fakeapi {
 	function __call($method, $args) {
 		switch($method) {
 			case 'getBalance':
-				return 0;
+				return 1000;
+			break;
+			case 'sendMoney':
+				$ret = new stdClass;
+				$ret->success=true;
+				return $ret;
 			break;
 			
 			default:
-				return 'API not avaliable.';
+				return "API $method not avaliable.";
 			break;
 		}
 	}
@@ -30,6 +35,13 @@ class selectapi {
 		
 		case 'coinbase':
 			$this->provider = $loader->load('coinbaseapi');
+		break;
+		case 'fakeapi':
+			$this->provider = new fakeapi;
+		break;
+		case 'dilmacoin':
+			$this->provider = $loader->load('bitcoinapi');
+			$this->provider->init(21057, $config->api_key(), $config->api_secret());
 		break;
 		
 		default:
