@@ -7,7 +7,9 @@ $config = $loader->load('configuration');
 ?>
 <html>
 <head>
-<link href="assets/style.css" rel="stylesheet" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- link href="assets/style.css" rel="stylesheet" type="text/css"/ -->
+<link href="css/bootstrap.css" rel="stylesheet"> 
 <title><?php
 $curtitle = $template->getTitle(true);
 echo $config->faucet_name().' - '.$curtitle; 

@@ -41,7 +41,7 @@ class selectapi {
 		break;
 		case 'dilmacoin':
 			$this->provider = $loader->load('bitcoinapi');
-			$this->provider->init(21057, $config->api_key(), $config->api_secret());
+			$this->provider->init($config->api_port(), $config->api_key(), $config->api_secret());
 		break;
 		
 		default:
