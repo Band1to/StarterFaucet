@@ -73,6 +73,8 @@ class Main {
 	function clearForm() {
 		$this->useraddr = '';
 		$this->checked = false;
+		// força a reatualizar  osaldo
+		unset($this->balance);
 	}
 
 	function getQuotedAddress() {
