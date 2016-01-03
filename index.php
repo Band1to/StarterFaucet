@@ -38,13 +38,13 @@ $main = new Main;
 			<br>
 			<div class="content">
 				<label for="address" style="display: block;">Seu endereço <?= $main->coinName() ?></label>
-				<input type="text" name="address" maxlength="100" style="width:300px" value="" style="display: block;"/>
+				<input type="text" name="address" maxlength="100" style="width:300px" value="<?= $main->getQuotedAddress() ?>" style="display: block;"/>
 				<br />
 			</div>
 			<br>
 			<div class="content">
 				<label for="terms" style="display: block;">Termos de uso</label>
-				<input id="terms" type="checkbox" name="terms">Eu concordo com os <a href="terms.php" target="_blank">Termos de Uso</a> do serviço</input>
+				<input id="terms" type="checkbox" name="terms"<?= $main->getChecked() ?>>Eu concordo com os <a href="terms.php" target="_blank">Termos de Uso</a> do serviço</input>
 			</div>
 			<br>
 			<div class="undashed">

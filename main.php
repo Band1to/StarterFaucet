@@ -49,12 +49,42 @@ class Main {
 		return $this->_message;
 	}
 
+	function getAddress() {
+		if (!isset($this->useraddr)) {
+			$this->useraddr = $_POST['address'];
+		}
+		return $this->useraddr;
+	}
+
+	function isChecked() {
+		if (!isset($this->checked)) {	
+			$this->checked = !empty($_POST['terms']);
+		}
+		return $this->checked;
+	}
+
+	function getChecked() {
+		if ($this->isChecked()) {
+			return ' checked="checked" ';
+		}
+		return '';
+	}
+
+	function clearForm() {
+		$this->useraddr = '';
+		$this->checked = false;
+	}
+
+	function getQuotedAddress() {
+		return htmlspecialchars($this->getAddress(), ENT_QUOTES);
+	}
+
 	// all teh work is here;
 	// has collateral effects on both $this->_message and $this->_hasMessage
 	function validate() {
 		$continue = false;
 		$msg = '';
-		$useraddr = $_POST['address'];
+		$useraddr = $this->getAddress();
 		$terms = $_POST['terms'];
 		$continue = true;
 		$msg = '';
@@ -114,8 +144,7 @@ class Main {
 			// Update the log to put the wait period in place.
 			$ret = $this->log->logIP();
 			// Unset the variables to clear the form.
-			unset($useraddr);
-			unset($amount);
+			$this->clearForm();
 			$msg = 'Sucesso, o depósito deve aparecer na sua carteira em breve. (txid ' . $send->success . ').';
 		} else {
 			$msg = 'Não foi possivel enviar para sua carteira. Código de erro: ' . $send->error;
