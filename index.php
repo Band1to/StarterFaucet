@@ -1,5 +1,6 @@
 <?php
 require_once('main.php');
+require_once('ad-rotator.php');
 $main = new Main;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -15,13 +16,24 @@ $main = new Main;
 <body bgcolor="#242640">
 
 <div align="center">
+<div id="content" style="width: 728px; border:10px red; position: relative;">
+<div id="ad-lateral" style="position: absolute; width: 120px; left: -130px; ">
+	<?= rotate_left() ?>
+</div>
+<div id="ad-lateral" style="position: absolute; width: 120px; right: -130px; ">
+	<?= rotate_right() ?>
+</div>
+<div id="ad-leaderboard">
+	<?= rotate_top() ?>
+</div>
 <form action="index.php?next" method="post">
-	<table width="714" border="1" class="Table" id="table1">
+	<table width="728" border="1" class="Table" id="table1">
 
 		<tr>
 			<td style="font-family: 'Trebuchet MS', Verdana, Arial, sans-serif; font-size: 14px; color: #282828">
 			<a href="." style="text-decoration: none;">
-			<div class="title"><?= $main->getTitle() ?></div>&nbsp;</td>
+			<div class="title"><?= $main->getTitle() ?></div>
+			</td>
 			<td width="0" height="100"></td>
 		</tr>
 <?php if ($main->hasMessage()) { ?>
@@ -54,6 +66,7 @@ $main = new Main;
 			<br>
 			<div class="content">
 				<input type="submit" value="Enviar Dilmacoin"/>
+				(<?= $main->faucetAmount() ?> <?= $main->coinCode() ?> a cada <?= $main->faucetTime() ?>)
 			</div>
 			</td>
 		</tr>
@@ -74,6 +87,7 @@ $main = new Main;
 		</tr>
 	</table>
 </form>
+</div>
 </div>
 
 </body>

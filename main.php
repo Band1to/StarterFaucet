@@ -30,6 +30,23 @@ class Main {
 	function coinCode() {
 		return $this->config->coin_code();;
 	}
+	function faucetAmount() {
+		return $this->config->faucet_amount();
+	}
+	function faucetTime() {
+		$ts = $this->config->wait_period();
+		$h = intval($ts/3600);
+		$m = intval($ts/60) % 60;
+		$s = intval($ts) % 60;
+		$ret = "";
+		if ($h==1) $ret .= "$h hora ";
+		elseif ($h) $ret .= "$h horas ";
+		if ($m==1) $ret .= "$m minuto ";
+		elseif ($m) $ret .= "$m minutos ";
+		if ($s==1) $ret .= "$s segundo";
+		elseif ($s) $ret .= "$s segundos";
+		return $ret;
+	}
 	function getBalance() {
 		if (!isset($this->balance)) {
 			$this->balance = $this->api->getBalance();
